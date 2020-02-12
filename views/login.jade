@@ -1,0 +1,9 @@
+extends ./template.jade
+block content
+  if isTarget
+    p You are logged in as the target!
+  else
+    p What is your password?
+    form(action="/login", method="post")
+      input(type="password", name="password")
+      input(type="submit", value="Log In")

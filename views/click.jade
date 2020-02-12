@@ -1,0 +1,8 @@
+extends ./template.jade
+block content
+  if isTarget
+    p You were phished!
+    p We emailed the flag to the person who phished you.
+  else
+    p ... nothing happened.
+    p (Remember, you need to get #{targetName} to click this link. It won't work if you click it.)

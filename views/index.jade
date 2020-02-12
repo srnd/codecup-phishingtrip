@@ -1,0 +1,19 @@
+extends ./template.jade
+block content
+  if link
+    h2 Your Link
+    p Here is your unique link:
+    input(type="text", value="#{link}" readonly)
+    p You need to get #{targetName} to click that link. Here are some tips:
+    ul
+      li #{targetName} isn't going to click just any link. You'll need to be sneaky.
+      li You have our permission to trick or lie to #{targetName}.
+      li This link looks pretty obvious, doesn't it? You might want to run it through a URL shortener.
+      li If #{targetName} clicks your link, we will email you the flag. You don't score until you paste it in CodeCup.
+    p Good luck! If you entered the wrong email, you can update your link below.
+
+  h2 Generate a Phishing Link
+  p Enter #[strong your] email below, and we will generate a unique link. Get #{targetName} to click that link.
+  form(action="/", method="post")
+    input(type="email", name="email" placeholder="myemail@gmail.com" value="#{email || ''}" required)
+    input(type="submit", value="Generate a phishing link")

@@ -1,0 +1,23 @@
+version: 2.1
+workflows:
+  build:
+    jobs:
+      - build:
+          context: Docker Hub
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run: |
+          TAG=1.$CIRCLE_BUILD_NUM
+          docker build -t srnd/codecup-phishingtrip:$TAG .
+          docker tag srnd/codecup-phishingtrip:$TAG srnd/codecup-phishingtrip:latest
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker push srnd/codecup-phishingtrip:$TAG
+          docker push srnd/codecup-phishingtrip:latest

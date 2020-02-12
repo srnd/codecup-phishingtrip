@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+  head
+    block title
+      title Phishing Trip
+  body
+    h1 Phishing Trip
+    block content
+    footer
+      if isTarget
+        p (You are the target.)
+      else
+        p (Are you the target? #[a(href="/login") Log in.])
